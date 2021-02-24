@@ -30,17 +30,37 @@
 
         <section class="intro">
             <h1 class="section__title section__title--intro">
-                 <strong>Lego Robots</strong>
+                 <strong>Logstash to Logos</strong>
             </h1>
-            <p class="section__subtitle section__subtitle--intro">Lego robots with BlackJack</p>
-            <img src="img/portfolio-01.jpg" alt="" class="intro__img">
+            <p class="section__subtitle section__subtitle--intro">When one log collector is not enough...</p>
+            <img src="img/logos.png" alt="" class="intro__img">
         </section>
         
         <div class="portfolio-item-individual">
-            <p>Voluptatibus, soluta blanditiis! Incidunt ea unde itaque illo molestiae eligendi sint culpa nobis voluptas sapiente voluptate, magnam ipsum eius earum?</p>
-            <img src="img/portfolio-details.jpg" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe et amet tenetur! Fugit sequi optio corrupti fugiat ducimus consequatur incidunt?</p>
-            <p>Voluptatibus, soluta blanditiis! Incidunt ea unde itaque illo molestiae eligendi sint culpa nobis voluptas sapiente voluptate, magnam ipsum eius earum?</p>
+            <p>The main objectives behind this project were the following: <br />
+                <b><span>&#8226;</span></b> Setup logos in a docker container and ensure it ran correctly. <br />
+                <b><span>&#8226;</span></b> Understand current logstash configuration and convert it to FluentD configuration. <br />
+                <b><span>&#8226;</span></b> Make sure that all plugins work correctly in FluentD and are correctly correlated to the same fucnctionality as in Logstash.
+           </p>
+            <h3 >
+                <strong>What is Logos?</strong>
+           </h3>
+           <p>Logos is basically a wrapper around FluentD. Logos allows FluentD to parse logs and upload those Logs to the cloud (AWS). It has its own built in API as well. </p>
+           <h3 >
+            <strong>Docker configuration</strong>
+           </h3>
+           <p>I had to play around with the docker container startup parameters eventually getting to a point where the final parameters below worked.</p>
+           <img src="img/portfolio-details.jpg" alt="">
+           <p>I had to create a docker volume for the configuration as a prerequisite and this can be seen in the startup argument configuration paths. Port configuration was
+               needed for system / firewall logs as the container was running under docker user and any port < 1024 on Linux is protected. This solution worked as expected.
+           </p>
+           <h3 >
+                <strong>Example configuration</strong>
+           </h3>
+           <p>Below is an example configuration of input showing firewall logs input in Logstash and the same input in FluentD. This process was repeated for each input we had in Logstash.
+                Inputs such as s3 buckets, syslogs, api logs, local authentication logs had to be converted to FluentD. This also meant adding several plugins to FluentD and updating the container.
+           </p>
+           <img src="img/portfolio-details.jpg" alt="">
         </div>
         
         
